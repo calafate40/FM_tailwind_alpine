@@ -9,60 +9,62 @@
         display: none !important;
       }
     </style>
-    <!-- ___CSS___ -->
+    <style></style>
     <title>WebViewerDocument</title>
   </head>
   <body>
-    <div x-data="alpineData" class="container flex flex-col justify-center mt-10 mx-auto">
-      <div class="container mx-auto px-4" x-cloak>
-        <p class="text-center, text-indigo-300" x-show="isOpen">こんにちは</p>
-        <p x-text="data.name" x-show="isOpen"></p>
+    <div class="container flex flex-col justify-center mx-auto mt-10 divide-y-4 divide-blue-300">
+      <h1 class="text-2xl pl-4 mb-1">FileMaker with tailwindcss and Alpinejs</h1>
+      <p class="pl-2 pt-4">
+        This is a repository for smoothly linking the javaScript development environment and the FileMaker development
+        environment.
+      </p>
+    </div>
+    <div x-data="alpineData" class="container flex flex-col justify-center mt-10 mx-auto gap-4">
+      <div class="container mx-auto px-4 text-center gap-10" x-cloak>
+        <p class="text-center, text-red-400" x-show="isOpen">Success! Alpine.js running</p>
+        <p class="text-blue-300" x-text="`by ${data.name}`" x-show="isOpen"></p>
       </div>
-      <button class="bg-gray-100 mx-auto px-6" @click="toggle()" x-text="isOpen ? '非表示': '表示'"></button>
+      <button
+        class="bg-red-100 mx-auto px-6"
+        @click="toggle()"
+        x-text="isOpen ? 'ok': 'Alpine test click here'"
+      ></button>
     </div>
     <script>
       const mode = 'dev'
-      const data = mode !== 'prod' ? '../src/data.js' : '___DATA___'
-      const script = mode !== 'prod' ? '../src/script.js' : '___JS___'
-      const alpine = mode !== 'prod' ? '../node_modules/alpinejs/dist/cdn.min.js' : '___ALPINE___'
-      const css = mode !== 'prod' ? 'styles.css' : '___CSS___'
+      const data = mode !== 'prod' ? '../src/data.js' : ''
+      const script = mode !== 'prod' ? '../src/script.js' : ''
+      const alpine = mode !== 'prod' ? '../node_modules/alpinejs/dist/cdn.min.js' : ''
+      const css = mode !== 'prod' ? 'styles.css' : ''
 
-      const loadScript = (mode, src) => {
+      const loadScript = (src) => {
         const script = document.createElement('script')
-        if (mode !== 'prod') {
-          script.src = src
-        } else {
-          script.textContent = src
-        }
+
+        script.src = src
+
         script.async = false
         window.document.body.append(script)
       }
-      const loadStyle = (mode, src) => {
-        let style = ''
-        if (mode !== 'prod') {
-          style = document.createElement('link')
-          style.rel = 'stylesheet'
-          style.href = src
-        } else {
-          style = document.createElement('style')
-          style.textContent = src
-        }
-
+      const loadStyle = (src) => {
+        style = document.createElement('link')
+        style.rel = 'stylesheet'
+        style.href = src
         window.document.head.appendChild(style)
       }
 
       if (css) {
-        loadStyle(mode, css)
+        loadStyle(css)
       }
-      if (data) {
-        loadScript(mode, data)
-      }
-      if (script) {
-        loadScript(mode, script)
-      }
-      if (alpine) {
-        loadScript(mode, alpine)
-      }
+      ;[data, script, alpine].forEach((e) => {
+        if (e) loadScript(e)
+      })
+    </script>
+    <script>
+      '___JS___'
+    </script>
+    <script>
+      '___ALPINE___'
     </script>
   </body>
 </html>

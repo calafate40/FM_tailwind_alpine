@@ -8,10 +8,10 @@ const test = () => {
 test()
 
 const alpineData = {
-  data: mode !== 'prod' ? dummyData : '___DATA___',
+  data: mode !== 'prod' ? fmData : '___DATA___',
   isOpen: false,
   toggle() {
-    console.log('firefire')
+    console.log('toggle fire')
     this.isOpen = !this.isOpen
   },
 }
