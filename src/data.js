@@ -1,0 +1,1 @@
+const dummyData = { name: 'furukawa' }

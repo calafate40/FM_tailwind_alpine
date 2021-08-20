@@ -1,0 +1,31 @@
+{
+  "name": "filemaker-tailwind-alpine",
+  "version": "1.0.0",
+  "description": "FileMaker web viewer template",
+  "main": "index.js",
+  "scripts": {
+    "dev": "NODE_ENV=development tailwindcss -i tailwind.css -o public/styles.css --watch",
+    "prod": "NODE_ENV=production tailwindcss -i tailwind.css -o public/styles.css",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "FileMaker",
+    "tailwindcss",
+    "alpinejs"
+  ],
+  "author": "calafate40",
+  "license": "ISC",
+  "dependencies": {
+    "alpinejs": "^3.2.3"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.3.1",
+    "postcss": "^8.3.6",
+    "tailwindcss": "^2.2.7"
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "printWidth": 120
+  }
+}

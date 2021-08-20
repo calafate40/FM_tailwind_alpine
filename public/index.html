@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      [x-cloak] {
+        display: none !important;
+      }
+    </style>
+    <!-- ___CSS___ -->
+    <title>WebViewerDocument</title>
+  </head>
+  <body>
+    <div x-data="alpineData" class="container flex flex-col justify-center mt-10 mx-auto">
+      <div class="container mx-auto px-4" x-cloak>
+        <p class="text-center, text-indigo-300" x-show="isOpen">こんにちは</p>
+        <p x-text="data.name" x-show="isOpen"></p>
+      </div>
+      <button class="bg-gray-100 mx-auto px-6" @click="toggle()" x-text="isOpen ? '非表示': '表示'"></button>
+    </div>
+    <script>
+      const mode = 'dev'
+      const data = mode !== 'prod' ? '../src/data.js' : '___DATA___'
+      const script = mode !== 'prod' ? '../src/script.js' : '___JS___'
+      const alpine = mode !== 'prod' ? '../node_modules/alpinejs/dist/cdn.min.js' : '___ALPINE___'
+      const css = mode !== 'prod' ? 'styles.css' : '___CSS___'
+
+      const loadScript = (mode, src) => {
+        const script = document.createElement('script')
+        if (mode !== 'prod') {
+          script.src = src
+        } else {
+          script.textContent = src
+        }
+        script.async = false
+        window.document.body.append(script)
+      }
+      const loadStyle = (mode, src) => {
+        let style = ''
+        if (mode !== 'prod') {
+          style = document.createElement('link')
+          style.rel = 'stylesheet'
+          style.href = src
+        } else {
+          style = document.createElement('style')
+          style.textContent = src
+        }
+
+        window.document.head.appendChild(style)
+      }
+
+      if (css) {
+        loadStyle(mode, css)
+      }
+      if (data) {
+        loadScript(mode, data)
+      }
+      if (script) {
+        loadScript(mode, script)
+      }
+      if (alpine) {
+        loadScript(mode, alpine)
+      }
+    </script>
+  </body>
+</html>

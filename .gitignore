@@ -1,0 +1,9 @@
+node_modules/
+.DS_Store
+.env
+styles.css
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
