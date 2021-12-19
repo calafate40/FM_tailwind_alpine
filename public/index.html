@@ -14,23 +14,29 @@
     <title>WebViewerDocument</title>
   </head>
   <body>
-    <div class="container flex flex-col justify-center mx-auto mt-10 divide-y-4 divide-blue-300">
-      <h1 class="text-2xl pl-4 mb-1">FileMaker with tailwindcss and Alpinejs</h1>
-      <p class="pl-2 pt-4">
-        This is a repository for smoothly linking the javaScript development environment and the FileMaker development
-        environment.
-      </p>
-    </div>
-    <div x-data="alpineData" x-init="init()" class="container flex flex-col justify-center mt-10 mx-auto gap-4">
-      <div class="container mx-auto px-4 text-center gap-10" x-cloak>
-        <p class="text-center, text-red-400" x-show="isOpen">Success! Alpine.js running</p>
-        <p class="text-blue-300" x-text="`by ${data.name}`" x-show="isOpen"></p>
+    <div class="container pt-8 mx-auto" x-data="alpineData">
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <template x-for="item in data" :key="item.id">
+          <div
+            class="flex items-center shadow hover:bg-indigo-100 hover:shadow-lg hover:rounded transition duration-150 ease-in-out transform hover:scale-105 p-3"
+          >
+            <img
+              class="w-10 h-10 rounded-full mr-4"
+              :src="`${item.profile_image}`"
+            />
+            <div class="text-sm">
+              <p
+                class="text-gray-900 leading-none"
+                x-text="item.employee_name + ' (' + item.employee_age + ')'"
+              ></p>
+              <p
+                class="text-gray-600"
+                x-text="'$'+item.employee_salary/100"
+              ></p>
+            </div>
+          </div>
+        </template>
       </div>
-      <button
-        class="bg-red-100 mx-auto px-6"
-        @click="toggle()"
-        x-text="isOpen ? 'ok': 'Alpine test click here'"
-      ></button>
     </div>
     <script>
       const mode = 'dev'

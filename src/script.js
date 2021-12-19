@@ -9,14 +9,22 @@ test()
 
 const alpineData = {
   data: '',
-  isOpen: false,
-  toggle() {
-    console.log('toggle fire')
-    this.isOpen = !this.isOpen
-  },
   init() {
-    this.data = data
+    this.data = convData(data)
   },
+}
+
+const convData = (data) => {
+  return data.map((record) => {
+    const fieldData = record.fieldData
+    return {
+      id: fieldData.id,
+      employee_name: fieldData.employee_name,
+      employee_salary: fieldData.employee_salary,
+      employee_age: fieldData.employee_age,
+      profile_image: fieldData.profile_image,
+    }
+  })
 }
 
 const doScript = (scriptName, args, optionNum) => {
