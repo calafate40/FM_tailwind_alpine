@@ -8,19 +8,23 @@ const test = () => {
 test()
 
 const alpineData = {
-  data: mode !== 'prod' ? fmData : '___DATA___',
+  data: '',
   isOpen: false,
   toggle() {
     console.log('toggle fire')
     this.isOpen = !this.isOpen
   },
+  init() {
+    this.data = data
+  },
 }
 
-const doScript = (scriptName, args) => {
+const doScript = (scriptName, args, optionNum) => {
+  if (!optionNum) optionNum = 0
   args = JSON.stringify(args)
   if (mode != 'prod') {
     console.log(args)
   } else {
-    FileMaker.PerformScriptWithOption(scriptName, args, 0)
+    FileMaker.PerformScriptWithOption(scriptName, args, optionNum)
   }
 }
