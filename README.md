@@ -70,7 +70,7 @@ Substitute ( html;"\"___DATA___\"";data )
 
 以下のファイルを丸ごとコピーして FileMaker に貼り付けます。
 
-- [ ] filemaker/index.html => html フィールド
+- [ ] filemaker/index.html => html フィールドへペースト
 
 ## gitHub 設定
 

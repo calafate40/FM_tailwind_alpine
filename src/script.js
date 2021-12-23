@@ -12,19 +12,26 @@ const alpineData = {
   init() {
     this.data = convData(data)
   },
+  sortFlg: false,
+  toggleFlag() {
+    this.sortFlg = !this.sortFlg
+  },
+  get sortCard() {
+    if (this.data) {
+      if (this.sortFlg) {
+        return this.data.sort((a, b) => a.employee_salary - b.employee_salary)
+      } else {
+        return this.data.sort((a, b) => b.employee_salary - a.employee_salary)
+      }
+    }
+  },
+  showCard(id) {
+    doScript('showCard', id, 0)
+  },
 }
 
 const convData = (data) => {
-  return data.map((record) => {
-    const fieldData = record.fieldData
-    return {
-      id: fieldData.id,
-      employee_name: fieldData.employee_name,
-      employee_salary: fieldData.employee_salary,
-      employee_age: fieldData.employee_age,
-      profile_image: fieldData.profile_image,
-    }
-  })
+  return data.map((e) => e.fieldData)
 }
 
 const doScript = (scriptName, args, optionNum) => {
